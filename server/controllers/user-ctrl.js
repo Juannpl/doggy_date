@@ -111,7 +111,7 @@ module.exports = {
           },
           process.env.SECRET
         );
-        return res.status(200).json({ token: token });
+        return res.status(200).json({ token, user });
       } else {
         return res.status(400).json({ error: "Mot de passe incorrect" });
       }

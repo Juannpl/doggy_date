@@ -1,119 +1,122 @@
-// const models = require("../models");
+const models = require("../models");
 
-// module.exports = {
-//   create: async (req, res) => {
-//     const { name, breed, sexe, age, dog_life } = req.body;
+module.exports = {
+  create: async (req, res) => {
+    console.log(req.body);
 
-//     if (
-//       name == "" ||
-//       breed == "" ||
-//       sexe == "" ||
-//       age == "" ||
-//       dog_life == ""
-//     ) {
-//       return res
-//         .status(500)
-//         .json({ message: "veuillez remplir tous les champs." });
-//     }
+    const { name, breed, sexe, age, dog_life } = req.body;
 
-//     const new_dog = await models.dog.create({
-//       name: name,
-//       breed: breed,
-//       sexe: sexe,
-//       age: age,
-//       dog_life: dog_life,
-//     });
+    if (
+      name == "" ||
+      breed == "" ||
+      sexe == "" ||
+      age == "" ||
+      dog_life == ""
+    ) {
+      return res
+        .status(500)
+        .json({ message: "veuillez remplir tous les champs." });
+    }
 
-//     if (new_dog) {
-//       return res
-//         .status(200)
-//         .json({ message: "Le profil de l'animal à été crée", post: new_dog });
-//     } else {
-//       return res.status(400).json({ message: "erreur" });
-//     }
-//   },
+    const new_dog = await models.Dogs.create({
+      name: name,
+      breed: breed,
+      sexe: sexe,
+      age: age,
+      dog_life: dog_life,
+    });
 
-//   update: async (req, res) => {
-//     const id = req.params.id;
-//     const { name, breed, sexe, age, dog_life } = req.body;
+    if (new_dog) {
+      return res
+        .status(200)
+        .json({ message: "Le profil de l'animal à été crée", post: new_dog });
+    } else {
+      return res.status(400).json({ message: "erreur" });
+    }
+  },
 
-//     if (
-//       name == "" ||
-//       breed == "" ||
-//       sexe == "" ||
-//       age == "" ||
-//       dog_life == ""
-//     ) {
-//       return res.status(500).json({ message: "veuillez remplir les champs." });
-//     }
+  update_dog: async (req, res) => {
+    const id = req.params.id;
+    const { name, breed, sexe, age, dog_life } = req.body;
 
-//     const post = await models.dog.findOne({
-//       attributes: ["id", "text", "users_id"],
-//       where: { id },
-//     });
-//     await post
-//       .update({
-//         text: text ? text : post.text,
-//       })
-//       .then((post) => {
-//         return res
-//           .status(200)
-//           .json({ message: "modification effectué", post: post });
-//       })
-//       .catch((e) => {
-//         return res
-//           .status(400)
-//           .json({ message: "erreur lors de la modification" });
-//       });
-//   },
+    if (
+      name == "" ||
+      breed == "" ||
+      sexe == "" ||
+      age == "" ||
+      dog_life == ""
+    ) {
+      return res.status(500).json({ message: "veuillez remplir les champs." });
+    }
 
-//   delete: async (req, res) => {
-//     const id = req.params.id;
+    const dog = await models.Dogs.findOne({
+      attributes: ["id", "name", "breed", "sexe", "age", "dog_life", "spa_id"],
+      where: { id },
+    });
+    await dog
+      .update({
+        name: name ? name : dog.name,
+        breed: breed ? breed : dog.breed,
+        sexe: sexe ? sexe : dog.sexe,
+        age: age ? age : dog.age,
+        dog_life: dog_life ? dog_life : dog.dog_life,
+      })
+      .then((dog) => {
+        return res
+          .status(200)
+          .json({ message: "modification effectué", dog: dog });
+      })
+      .catch((e) => {
+        return res
+          .status(400)
+          .json({ message: "erreur lors de la modification" });
+      });
+  },
 
-//     const post = await models.dog.findOne({
-//       attributes: ["id", "text", "users_id"],
-//       where: { id },
-//     });
+  delete_dog: async (req, res) => {
+    const id = req.params.id;
 
-//     if (post) {
-//       await models.dog
-//         .destroy({
-//           where: { id: id },
-//         })
-//         .then(() => {
-//           return res.status(200).json({ message: "post supprimé" });
-//         })
-//         .catch((e) => {
-//           return res
-//             .status(400)
-//             .json({ message: "erreur lors de la suppression" });
-//         });
-//     }
-//   },
-//   get_all_posts: async (req, res) => {
-//     await models.dog
-//       .findAll({
-//         attributes: ["id", "text", "users_id"],
-//       })
-//       .then((posts) => {
-//         return res.status(200).json({ posts: posts });
-//       })
-//       .catch((e) => {
-//         return res.status(400).json({ message: "une erreur est survenue." });
-//       });
-//   },
-//   get_one_post: async (req, res) => {
-//     const post_id = req.params.id;
-//     await models.dog
-//       .findOne({
-//         where: { id: post_id },
-//         attributes: ["id", "text", "users_id"],
-//       })
-//       .then((post) => {
-//         return res.status(200).json({ post: post });
-//       })
-//       .catch((e) => {
-//         return res.status(400).json({ message: "post pas trouvé" });
-//       });
-//   },
-// };
+    const dog = await models.Dogs.findOne({
+      attributes: ["id", "name", "breed", "sexe", "age", "dog_life", "spa_id"],
+      where: { id },
+    });
+
+    if (dog) {
+      await models.Dogs.destroy({
+        where: { id: id },
+      })
+        .then(() => {
+          return res.status(200).json({ message: "Dog supprimé" });
+        })
+        .catch((e) => {
+          return res
+            .status(400)
+            .json({ message: "erreur lors de la suppression" });
+        });
+    }
+  },
+  get_all_dogs: async (req, res) => {
+    await models.Dogs.findAll({
+      attributes: ["id", "name", "breed", "sexe", "age", "dog_life", "spa_id"],
+    })
+      .then((dogs) => {
+        return res.status(200).json({ dogs: dogs });
+      })
+      .catch((e) => {
+        return res.status(400).json({ message: "une erreur est survenue." });
+      });
+  },
+  get_one_dog: async (req, res) => {
+    const dog_id = req.params.id;
+    await models.Dogs.findOne({
+      where: { id: dog_id },
+      attributes: ["id", "name", "breed", "sexe", "age", "dog_life", "spa_id"],
+    })
+      .then((dog) => {
+        return res.status(200).json({ dog: dog });
+      })
+      .catch((e) => {
+        return res.status(400).json({ message: "dog pas trouvé" });
+      });
+  },
+};

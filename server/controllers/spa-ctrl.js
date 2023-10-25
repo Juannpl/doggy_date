@@ -13,7 +13,6 @@ module.exports = {
         .json({ message: "Veuillez remplir tous les champs." });
     }
     const spa = await models.Spas.findOne({ where: { name: name } });
-    console.log("SPAAAA", spa);
 
     if (!spa) {
       const newSpa = models.Spas.create({
@@ -33,7 +32,6 @@ module.exports = {
   update_spa: async (req, res) => {
     const id = req.params.id;
     const { name, longitude, latitude } = req.body;
-    console.log("------------------", req.body);
 
     // Vérification des champs obligatoires
     if (name == "" || longitude == "" || latitude == "") {
@@ -41,8 +39,6 @@ module.exports = {
         .status(500)
         .json({ message: "Veuillez remplir tous les champs." });
     }
-
-    console.log("------------------", req.body);
 
     // Recherche de l'utilisateur par ID
     const spa = await models.Spas.findOne({ where: { id } });
@@ -80,5 +76,31 @@ module.exports = {
             .json({ message: "Erreur lors de la suppression" });
         });
     }
+  },
+  get_all_spas: async (req, res) => {
+    console.log("get_all_spas");
+    await models.Spas.findAll({
+      attributes: ["id", "name", "longitude", "latitude"],
+    })
+      .then((spas) => {
+        console.log(spas);
+        return res.status(200).json(spas);
+      })
+      .catch((e) => {
+        return res.status(400).json({ message: "une erreur est survenue." });
+      });
+  },
+  get_one_spa: async (req, res) => {
+    const spaId = req.params.id;
+    await models.Spas.findOne({
+      where: { id: spaId },
+      attributes: ["id", "name", "longitude", "latitude"],
+    })
+      .then((spa) => {
+        return res.status(200).json({ spa: spa });
+      })
+      .catch((e) => {
+        return res.status(400).json({ message: "Spa pas trouvé" });
+      });
   },
 };

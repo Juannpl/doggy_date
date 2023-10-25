@@ -1,0 +1,65 @@
+button {
+  border: none;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 8px !important;
+}
+
+.green {
+  background-color: #008680; /* Green */
+  color: #fff;
+}
+
+.white {
+  background-color: #fff; /* White */
+}
+
+/* ---------- Useful Button styling ---------- */
+
+.button {
+  position: relative;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s; /* Safari */
+}
+
+.button:hover {
+  transition-duration: 0.1s;
+}
+
+.button:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 8px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  box-shadow: 0 0 10px 20px rgb(255, 255, 255);
+  z-index: -10;
+}
+
+.button:active:after {
+  box-shadow: 0 0 0 0 #008680;
+
+  position: absolute;
+  border-radius: 8px;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: 0s;
+  z-index: -10;
+}
+
+.button:active {
+  top: 1px;
+}

@@ -1,0 +1,137 @@
+.page_register {
+  background-color: #008680;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.firstRegister {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}
+
+.twoRegister {
+  width: 80%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.twoRegister p {
+  text-align: center;
+}
+
+.formRegister {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.formRegisterParents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  width: 100%;
+  height: 70%;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  border-radius: 20px 20px 0 0;
+}
+
+.formRegister .form__group {
+  width: 80% !important;
+}
+
+.titleRegister {
+  padding-top: 10%;
+  color: #fff;
+}
+
+.offForm {
+  display: none;
+}
+
+.title_spa {
+  font-size: 18px;
+  font-weight: bold;
+  opacity: 70%;
+}
+
+.spaChoiceParents {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spaChoice {
+  display: flex;
+  flex-direction: row;
+  border: #008680 1px solid;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 3% 5% 3% 5%;
+  border-radius: 30px;
+}
+
+select {
+  border: #008680 1px solid;
+  width: 100%;
+  padding: 3% 5% 3% 5%;
+  border-radius: 30px;
+}
+
+.spaChoice:active {
+  background-color: antiquewhite;
+}
+
+.spaChoice p {
+  margin: 0 !important;
+}
+
+.resultScroll {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resultScroll ul {
+  list-style-type: none;
+}
+
+.resultInformations {
+  display: flex;
+  background-color: rgba(0, 134, 128, 0.2);
+  width: 90%;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 !important;
+}
+
+.OffResultInformations {
+  display: none;
+}
+
+.resultInformations li {
+  padding: 2px 5px 2px 10px;
+}

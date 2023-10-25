@@ -1,0 +1,39 @@
+/* section {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container_start {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  background-color: #00867f41;
+}
+
+.button_class {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  padding: 2%;
+}
+
+h1 {
+  font-size: 28px;
+  text-align: center;
+  margin: 0px;
+  padding: 2% 5%;
+}
+
+p {
+  text-align: center;
+  margin: 0px;
+  padding: 3% 10% 4% 10%;
+} */
